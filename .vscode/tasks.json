@@ -1,0 +1,13 @@
+{  
+    "version": "0.1.0",  
+    "showOutput": "always",  
+    "tasks": [  
+        {  
+            "taskName": "build",  
+            "command": "g++",  // C 语言就 gcc  
+            "isShellCommand": true,  
+            "showOutput": "always",  
+            "args": ["-g","-O1","-std=c++11","${file}", "-o", "${workspaceRoot}/${fileBasenameNoExtension}.o"]  // g++ 后面的命令参数  
+        }  
+    ]  
+}  
