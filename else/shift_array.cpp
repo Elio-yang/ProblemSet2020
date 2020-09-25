@@ -5,7 +5,7 @@
 */
 #include <iostream>
 #include <cstdlib>
-
+ 
 using namespace std;
 
 void shift_by_k(int arr[] ,int k, int len);
