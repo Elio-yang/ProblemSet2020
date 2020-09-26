@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 #define data_t int
-#define S      9987
+#define S          9987
 #define T      1008
 struct node{
     data_t key;
@@ -18,7 +18,7 @@ int main()
 {
     /*表头*/
     struct node *head=creat();
-    for(int i=0;i<15;i++){
+    for(int i=0;i<100;i++){
         if(i%2==0){
             insert(head,S);
         }else{
@@ -75,8 +75,13 @@ void op_list(struct node *head)
 void display(struct node* head)
 {
     struct node *tmp=head->next;
+    int cnt=-1;
     while(tmp!=NULL){
+        ++cnt;
         printf("%-6d    ",tmp->key);
+        if(cnt%10==9){
+            printf("\n");
+        }
         tmp=tmp->next;
     }
     printf("\n");
