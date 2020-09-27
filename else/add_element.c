@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 #define data_t int
-#define S          9987
+#define S      9987
 #define T      1008
 struct node{
     data_t key;
