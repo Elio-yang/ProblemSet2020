@@ -27,23 +27,15 @@ int main()
 }
 void remove_item(struct table* T,data_t item)
 {
-    /*j to point item*/
     int i=0;
-    int j=0;
-    int k;
-    /*cnt to store number of item*/
     int cnt=0;
-    for(k=0;k<T->size;k++){
-        if(T->arr[k]==item){
-            i++;
+    int j;
+    for(j=0;j<T->size;j++){
+        if(T->arr[j]==item){
             cnt++;
-        }else{
-            /* i points to another element which is not equal to item
-             * but j points to item so replace arr[j] by arr[i] 
-             */
-            T->arr[j]=T->arr[i];
-            i++;
-            j++;
+        }
+        else{
+            T->arr[i++]=T->arr[j];
         }
     }
     T->size-=cnt;
