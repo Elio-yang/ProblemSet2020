@@ -52,8 +52,5 @@ int main()
         }
         cout<<stu[i].id<<" "<<stu[i].room_num<<" "<<stu[i].rank<<endl;
     }
-
-
-
     return 0;
 }
