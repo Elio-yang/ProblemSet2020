@@ -22,7 +22,6 @@ int main()
     struct stack *S=creat();
     int op1;
     int d;
-    char * out[N];
     for(int i=0;i<n;i++){
         scanf("%d",&op1);
         if(op1==1){
