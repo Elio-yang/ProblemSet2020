@@ -12,7 +12,6 @@ int* build_fail(char *p);
 
 int main()
 {
-
     char txt[maxn];
     char pat[maxn];
     scanf("%s",txt);
