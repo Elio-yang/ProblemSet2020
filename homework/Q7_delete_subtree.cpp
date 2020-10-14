@@ -23,7 +23,6 @@ int main(){
     creat(T);
     int m;
     scanf("%d",&m);
-    BiTNode node;
     for(int i=0;i<m;i++){
         int k;
         flag=0;
