@@ -1,7 +1,6 @@
 #include<iostream>
 #include<cstdlib>
 #include<cstdio>
-#include<vector>
 
 using namespace std;
 
@@ -10,7 +9,6 @@ typedef struct BiTNode{
     struct BiTNode *lchild,*rchild;
 }BiTNode,*BiTree;
 
-vector<BiTree> v;
 void in_order(BiTree &root);
 void creat(BiTree &T);
 void find_node(BiTree &T,int key);
