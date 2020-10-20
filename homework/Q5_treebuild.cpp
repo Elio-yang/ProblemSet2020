@@ -9,12 +9,12 @@ struct node{
 void in_order(struct node *root);
 void post_order(struct node *root);
 void pre_order(struct node *root);
-struct node * creat(struct node **T);
+void creat(struct node **T);
 
 int main()
 {
         struct node *T=(struct node *)malloc(sizeof(struct node));
-        T=creat(&T);
+        creat(&T);
         pre_order(T);
         std::cout<<std::endl;
         in_order(T);
@@ -47,7 +47,7 @@ void pre_order(struct node *root)
                 pre_order(root->rchild);
         }
 }
-struct node * creat(struct node **T)
+void creat(struct node **T)
 {
         int k;
         std::cin>>k;
@@ -60,6 +60,5 @@ struct node * creat(struct node **T)
                 (*T)->key=k;
                 creat(&((*T)->lchild));
                 creat(&((*T)->rchild));
-                return *T;
         }
 }
