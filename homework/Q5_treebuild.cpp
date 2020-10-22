@@ -61,4 +61,4 @@ void creat(struct node **T)
                 creat(&((*T)->lchild));
                 creat(&((*T)->rchild));
         }
-}
+} 

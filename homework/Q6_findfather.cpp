@@ -22,7 +22,6 @@ int main()
                 find_pa(T,tmp,&pa);
                 std::cout<<pa<<std::endl;
         }
-
         return 0;
 }
 
