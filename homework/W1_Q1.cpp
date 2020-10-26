@@ -11,22 +11,30 @@ int main()
         int j=1;
         char c;
         while((c=getchar())!='\n'){
-                str[j]=c;
-                j++;
+                str[j++]=c;
         }
         str[j]='\0';
         printf("%s\n",str+1);
+
         unsigned short next_table[maxn];
+        next_table[0]=0;
+
+        /*用于定位*/
         int cur=0;
         int last=0;
-        next_table[0]=0;
-        int tmp_index_cur=0;
-        int tmp_index_insert1=0;
-        int tmp_index_insert2=0;
-        int cnt_insert=0;
-        int tmp_cur_insert=0;
+
+        /*存'='删掉的*/
         bool delete_all[maxn]={0};
         int delete_cur=0;
+
+        /*用于'{'*/
+        int tmp_index_cur=0;
+
+        /*用于'-'*/
+        int tmp_index_insert1=0;
+        int tmp_index_insert2=0;
+        int tmp_cur_insert=0;
+        int cnt_insert=0;
         int length=strlen(str+1);
         
         for(int i=1;i<=length;i++){
