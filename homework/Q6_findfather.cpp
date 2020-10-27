@@ -1,56 +1,58 @@
-#include<iostream>
-#include<cstdlib>
-#include<cstdio>
-using namespace std;
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+struct node{
+        int key;
+        struct node *lchild;
+        struct node *rchild;
+};
 
-typedef struct BiTNode{
-    int data;
-    struct BiTNode *lchild,*rchild;
-}BiTNode,*BiTree;
-
-void in_order(BiTree &root);
-void post_order(BiTree &root);
-void pre_order(BiTree &root);
-void creat(BiTree &T);
-void find_fa(BiTree &root,int son,int *father);
-int main(){
-    BiTree T;
-    creat(T);
-    int m;
-    scanf("%d",&m);
-    for(int i=0;i<m;i++){
-        int tmp;
-        scanf("%d",&tmp);
-        int father=0;
-        find_fa(T,tmp,&father);
-        cout<<father<<endl;
-    }
-    system("pause");
-    return 0;
-}
-void creat(BiTree &T){
-    int k;
-    cin>>k;
-    T=(BiTree )malloc(sizeof(BiTNode));
-    if(k==0)T=NULL;
-    else{
-        T->data=k;
-        creat(T->lchild);
-        creat(T->rchild);
-    }
-}
-void find_fa(BiTree &root,int son,int *father)
+void creat(struct node **T);
+void find_pa(struct node *T,int son,int *pa);
+int main()
 {
-    if(root==NULL){
-        return;
-    }
-    if((root->lchild!=NULL&&root->lchild->data==son)||(root->rchild!=NULL&&root->rchild->data==son)){
-        *father=root->data;
-        return;
-    }
-    if(root->lchild==NULL&&root->rchild==NULL){
-        return;
-    }
-    find_fa(root->lchild,son,father);
-    find_fa(root->rchild,son,father);
+        struct node *T=(struct node *)malloc(sizeof(struct node));
+        creat(&T);
+        int m;
+        scanf("%d",&m);
+        for(int i=0;i<m;i++){
+                int tmp;
+                scanf("%d",&tmp);
+                int pa=0;
+                find_pa(T,tmp,&pa);
+                std::cout<<pa<<std::endl;
+        }
+        return 0;
+}
+
+void creat(struct node **T)
+{
+        int k;
+        std::cin>>k;
+        if(*T==NULL){
+                *T=(struct node *)malloc(sizeof(struct node));
+        }
+        if(k==0){
+                *T=NULL;
+        }else{
+                (*T)->key=k;
+                creat(&((*T)->lchild));
+                creat(&((*T)->rchild));
+        }
+}
+
+void find_pa(struct node *T,int son,int *pa)
+{
+        if(T==NULL){
+                return;
+        }
+        if((T->lchild!=NULL&&T->lchild->key==son)||(T->rchild!=NULL&&T->rchild->key==son)){
+                *pa=T->key;
+                return;
+        }
+        if(T->lchild==NULL&&T->rchild==NULL){
+                return;
+        }
+        find_pa(T->lchild,son,pa);
+        find_pa(T->rchild,son,pa);
 }

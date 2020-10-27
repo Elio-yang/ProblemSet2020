@@ -1,82 +1,83 @@
-#include<iostream>
-#include<cstdlib>
-#include<cstdio>
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+struct node{
+        int key;
+        struct node *lchild;
+        struct node *rchild;
+};
+void in_order(struct node *root);
+void creat(struct node **T);
+void find_node(struct node **T,int key);
+void delete_sub(struct node *T);
+bool flag=false;
+int main()
+{
+        struct node *T=(struct node *)malloc(sizeof(struct node));
+        creat(&T);
+        int m;
+        scanf("%d",&m);
+        for(int i=0;i<m;i++){
+                int k;
+                flag=0;
+                scanf("%d",&k);
+                find_node(&T,k);
+                if(!flag){
+                        std::cout<<0<<std::endl;
+                }else{
+                        in_order(T);
+                        std::cout<<std::endl;
+                }
+    }
+        return 0;
+}
 
-using namespace std;
-
-typedef struct BiTNode{
-    int data;
-    struct BiTNode *lchild,*rchild;
-}BiTNode,*BiTree;
-
-void in_order(BiTree &root);
-void creat(BiTree &T);
-void find_node(BiTree &T,int key);
-void delete_sub(BiTNode *node);
-
-bool flag=0;
-
-int main(){
-    BiTree T;
-    creat(T);
-    int m;
-    scanf("%d",&m);
-    for(int i=0;i<m;i++){
-        int k;
-        flag=0;
-        scanf("%d",&k);
-        find_node(T,k);
-        if(!flag){
-            cout<<0<<endl;
-        }else{
-            in_order(T);
-            cout<<endl;
+void in_order(struct node *root)
+{
+        if(root!=NULL){
+                in_order(root->lchild);
+                printf("%d ",root->key);
+                in_order(root->rchild);
         }
-    }
-    system("pause");
-    return 0;
 }
-void in_order(BiTree &root)
+void creat(struct node **T)
 {
-    if(root!=NULL){
-        in_order(root->lchild);
-        printf("%d ",root->data);
-        in_order(root->rchild);
-    }
+        int k;
+        std::cin>>k;
+        if(*T==NULL){
+                *T=(struct node *)malloc(sizeof(struct node));
+        }
+        if(k==0){
+                *T=NULL;
+        }else{
+                (*T)->key=k;
+                creat(&((*T)->lchild));
+                creat(&((*T)->rchild));
+        }
 }
-void creat(BiTree &T){
-    int k;
-    cin>>k;
-    T=(BiTree )malloc(sizeof(BiTNode));
-    if(k==0)T=NULL;
-    else{
-        T->data=k;
-        creat(T->lchild);
-        creat(T->rchild);
-    }
-}
-void find_node(BiTree &T,int key)
+void find_node(struct node **T,int key)
 {
-    if(T->data==key){
-        flag=1;
-        delete_sub(T);
-        T=NULL;
-    }else{
+        if((*T)->key==key){
+                flag=true;
+                delete_sub(*T);
+                *T=NULL;
+        }
+        else{
+                if((*T)->lchild){
+                        find_node(&((*T)->lchild),key);
+                }
+                if((*T)->rchild){
+                        find_node(&(*T)->rchild,key);
+                }
+        }
+}
+void delete_sub(struct node *T)
+{
         if(T->lchild){
-            find_node(T->lchild,key);
+                delete_sub(T->lchild);
         }
         if(T->rchild){
-            find_node(T->rchild,key);
+                delete_sub(T->rchild);
         }
-    }
-}
-void delete_sub(BiTNode *node)
-{
-    if(node->lchild){
-        delete_sub(node->lchild);
-    }
-    if(node->rchild){
-        delete_sub(node->rchild);
-    }
-    free(node);
+        free(T);
 }
