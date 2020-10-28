@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include<time.h>
 using namespace std;
 int month[13][2]={
         {0,0},
@@ -41,10 +42,10 @@ int main()
                 /*连续的两天，差值为2*/
                 while(y1<y2||m1<m2||d1<d2){
                         d1++;
-                        /*
-                         *#define __isleap(year) \
-                         *((year) % 4 == 0 && ((year) % 100 != 0 || (year) % 400 == 0))
-                         */
+                        
+                         #define __isleap(year) \
+                         ((year) % 4 == 0 && ((year) % 100 != 0 || (year) % 400 == 0))
+                         
                         if(d1==month[m1][__isleap(y1)]+1){
                         /*是否满月？*/
                                 m1++;

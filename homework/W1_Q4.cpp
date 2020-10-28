@@ -23,7 +23,7 @@ int main()
                 for(int i=0;i<n;i++){
                         char ops[8];
                         scanf("%s",ops);
-                        switch(ops[0]){
+                        switch(ops[0]){ 
                                 case 'E':{
                                         /*入队一个元素*/
                                         int ele;
@@ -49,42 +49,43 @@ int main()
                                                         Map_V_p.erase(tmp);
                                                 }
                                         }
-                                        
-                                        Map_V_p[ele]--;
-                                        if(Map_V_p[ele]==0){
-                                                Map_V_p.erase(ele);
+                                        else if(Map_V_p.count(ele)){
+                                                Map_V_p[ele]--;
+                                                if (Map_V_p[ele] == 0) {
+                                                        Map_V_p.erase(ele);
+                                                }
                                         }
                                         break;
                                 }
                                 case 'R':{
                                         /*bug fix??*/
                                         /*取反每一个元素*/
-                                        flag*=(-1);
-                                        if(flag==-1){
-                                                int v1=Map_V_p[max_v];
-                                                int v2=Map_V_p[min_v];
-                                                if(Map_V_p.count(-max_v)){
-                                                        int v3=Map_V_p[-max_v];
-                                                        Map_V_p[max_v]=v3;
-                                                        Map_V_p[-max_v]=v1;
 
-                                                }else{
-                                                        Map_V_p.erase(v1);
-                                                        Map_V_p[-max_v]=v1;
-                                                }
-                                                
-                                                if(Map_V_p.count(-min_v)){
-                                                        int v4=Map_V_p[-min_v];
-                                                        Map_V_p[min_v]=v4;
-                                                        Map_V_p[-min_v]=v2;
-                                                }else{
-                                                        Map_V_p.erase(v2);
-                                                        Map_V_p[-min_v]=v2;
-                                                }
-                                                int tmp=max_v;
-                                                max_v=-min_v;
-                                                min_v=-tmp;
+                                        flag=-1;
+                                        int v1=Map_V_p[max_v];
+                                        int v2=Map_V_p[min_v];
+                                        if(Map_V_p.count(-max_v)){
+                                                int v3=Map_V_p[-max_v];
+                                                Map_V_p[max_v]=v3;
+                                                Map_V_p[-max_v]=v1;
+
+                                        }else{
+                                                Map_V_p.erase(max_v);
+                                                Map_V_p[-max_v]=v1;
                                         }
+
+                                        if(Map_V_p.count(-min_v)){
+                                                int v4=Map_V_p[-min_v];
+                                                Map_V_p[min_v]=v4;
+                                                Map_V_p[-min_v]=v2;
+                                        }else{
+                                                Map_V_p.erase(min_v);
+                                                Map_V_p[-min_v]=v2;
+                                        }
+                                        int tmp=max_v;
+                                        max_v=-min_v;
+                                        min_v=-tmp;
+
                                         break;
                                 }
                                 case 'M':{
@@ -100,9 +101,9 @@ int main()
                                                         }
                                                 }
                                         }
-                                        
+
                                         printf("%d\n",max_v);
-                                        
+
                                         break;
                                 }
                         }
