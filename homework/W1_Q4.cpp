@@ -59,6 +59,7 @@ int main()
                                 }
                                 case 'R':{
                                         /*bug fix??*/
+                                        /*still not fix : function on reverse 2020/10/27 */
                                         /*取反每一个元素*/
 
                                         flag=-1;
