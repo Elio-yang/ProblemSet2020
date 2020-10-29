@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 {
     "files.associations": {
         "iostream": "cpp",
@@ -13,10 +13,3 @@
         "ratio": "cpp",
         "streambuf": "cpp"
     }
-=======
-{
-    "files.associations": {
-        "iostream": "cpp"
-    }
->>>>>>> linux
-}
