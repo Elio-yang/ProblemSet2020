@@ -90,6 +90,7 @@ void KMP(char * T, char * P)
                 j = next[j];
             }
             if(j==m){
+                /*多次匹配*/
                 ans.push_back(i-j);
                 j=next[j-1];
                 i--;
