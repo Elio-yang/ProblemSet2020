@@ -6,26 +6,39 @@
 #include <stack>
 
 using namespace std;
+
+#define N 1000010
+#define top_S (-1)
 #define maxn 1000000
 char ops_arr[maxn];
 int val_arr[maxn];
 
-stack<int> val_stk;
-stack<char> ops_stk;
-
 bool Errno=false;
 
-int op_order(char c1,char c2){
-    if(c1=='('||c2=='(')return 0;
-    /*说明c2!='(,c2必然优先级大于等于c1*/
-    if(c1=='+'||c1=='-')return 1;
-    if(c1=='*'&&(c2=='*'||c2=='/'))return 1;
-    if(c1=='/'&&(c2=='*'||c2=='/'))return 1;
-    /*c1的优先级大于c2*/
-    return 0;
-}
+struct stack_i{
+    int Top;
+    int * arr;
+};
+struct stack_c{
+    int Top;
+    char *arr;
+};
+
+void pop(struct stack_i * S);
+void push(struct stack_i *S,int d);
+int top(struct stack_i *S);
+int empty(struct stack_i *S);
+struct stack_i *creat_i();
+
+void pop(struct stack_c * S);
+void push(struct stack_c *S,int d);
+int empty(struct stack_c *S);
+struct stack_c *creat_c();
+char top(struct stack_c *S);
 
 
+
+int op_order(char c1,char c2);
 int calc(char ops, int op1, int op2);
 
 int main()
@@ -34,10 +47,14 @@ int main()
         scanf("%s", post_str);
         memset(ops_arr, 0, sizeof(ops_arr));
 
+        struct stack_i *val_stk=creat_i();
+        struct stack_c *ops_stk=creat_c();
+
         int len = strlen(post_str);
         post_str[len] = ')';
         int cur = 0;
-        ops_stk.push('(');
+
+        push(ops_stk,'(');
 
         for (int i = 0; i <= len;) {
                 if (isdigit(post_str[i])) {
@@ -50,46 +67,45 @@ int main()
                 } 
                 else {
                         if (post_str[i] == ')') {
-                                while (!ops_stk.empty()&&ops_stk.top()!= '(' ) {
-                                        ops_arr[cur++] = ops_stk.top();
-                                        ops_stk.pop();
+                                while (!empty(ops_stk)&&top(ops_stk)!= '(' ) {
+                                        ops_arr[cur++] =top(ops_stk);
+                                        pop(ops_stk);
                                 }
-                                ops_stk.pop();
+                                pop(ops_stk);
                         } else {
-                                while (!ops_stk.empty() && (op_order(post_str[i],ops_stk.top()))) {
+                                while (!empty(ops_stk) && (op_order(post_str[i],top(ops_stk)))) {
                                         /*
                                           栈顶运算符的优先级比读到的运算符的优先级高
                                           或二者相等，弹出栈顶运算符放入后缀表达式中
                                         */
-                                        ops_arr[cur++] = ops_stk.top();
-                                        ops_stk.pop();
+                                        ops_arr[cur++] = top(ops_stk);
+                                         pop(ops_stk);
                                 }
-                                ops_stk.push(post_str[i]);
+                                push(ops_stk,post_str[i]);
                         }
                         i++;
                 }
         }
         for (int i = 0; i < cur; i++) {
                 if (!ops_arr[i]) {
-                        val_stk.push(val_arr[i]);
+                        push(val_stk,val_arr[i]);
                 } else {
-                        int v2 = val_stk.top();
-                        val_stk.pop();
-                        int v1 = val_stk.top();
-                        val_stk.pop();
+                        int v2 = top(val_stk);
+                        pop(val_stk);
+                        int v1 = top(val_stk);
+                        pop(val_stk);
                         int val = calc(ops_arr[i], v1, v2);
-                        val_stk.push(val);
+                        push(val_stk,val);
                 }
         }
         if(!Errno){
-                printf("%d\n", val_stk.top());
+                printf("%d\n", top(val_stk));
         }else{
                 printf("ILLEGAL\n");
         }
         system("pause");
         return 0;
 }
-
 
 int calc(char ops, int op1, int op2)
 {
@@ -127,4 +143,69 @@ int calc(char ops, int op1, int op2)
                 }
         }
         return ans;
+}
+
+
+int op_order(char c1,char c2)
+{
+        if(c1=='('||c2=='(')return 0;
+        /*说明c2!='(,c2必然优先级大于等于c1*/
+        if(c1=='+'||c1=='-')return 1;
+        if(c1=='*'&&(c2=='*'||c2=='/'))return 1;
+        if(c1=='/'&&(c2=='*'||c2=='/'))return 1;
+        /*c1的优先级大于c2*/
+        return 0;
+}
+
+
+void pop(struct stack_i * S)
+{
+    --S->Top;
+}
+void push(struct stack_i *S,int d)
+{
+    S->arr[++S->Top]=d;
+}
+int empty(struct stack_i *S)
+{
+    return S->Top==top_S;
+}
+struct stack_i *creat_i()
+{
+    struct stack_i *S;
+    S=(struct stack_i *)malloc(sizeof(struct stack_i));
+    S->arr=(int*)malloc(sizeof(int)*N);
+    S->Top=top_S;
+    return S;
+}
+int top(struct stack_i *S)
+{
+    return S->arr[S->Top];
+}
+
+
+void pop(struct stack_c * S)
+{
+    --S->Top;
+}
+void push(struct stack_c *S,int d)
+{
+    S->arr[++S->Top]=d;
+}
+int empty(struct stack_c *S)
+{
+    return S->Top==top_S;
+}
+struct stack_c *creat_c()
+{
+    struct stack_c *S;
+    S=(struct stack_c *)malloc(sizeof(struct stack_c));
+    S->arr=(char*)malloc(sizeof(char)*N);
+    S->Top=top_S;
+    return S;
+}
+
+char top(struct stack_c *S)
+{
+    return S->arr[S->Top];
 }

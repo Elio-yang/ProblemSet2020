@@ -2,62 +2,78 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct stack{
-    int Cap;
+struct stack_i{
     int Top;
     int * arr;
 };
-#define N 20010
+struct stack_c{
+    int Top;
+    char *arr;
+};
+
+#define N 1000010
 #define top_S (-1)
-void pop(struct stack * S);
-void push(struct stack *S,int d);
-int isEmpty(struct stack *S);
-struct stack *creat();
 
-int main()
-{
-    /*第一行*/
-    int n;
-    scanf("%d",&n);
-    struct stack *S=creat();
-    int op1;
-    int d;
-    for(int i=0;i<n;i++){
-        scanf("%d",&op1);
-        if(op1==1){
-            scanf("%d",&d);
-            push(S,d);
-        }
-        else if(op1==0){
-            pop(S);
-        }
-    }
-    system("pause");
-    return 0;
-}
+void pop(struct stack_i * S);
+void push(struct stack_i *S,int d);
+int empty(struct stack_i *S);
+struct stack_i *creat_i();
 
-void pop(struct stack * S)
+void pop(struct stack_c * S);
+void push(struct stack_c *S,int d);
+int empty(struct stack_c *S);
+struct stack_c *creat_c();
+
+
+
+void pop(struct stack_i * S)
 {
-    if(isEmpty(S)){
-        printf("invalid\n");
-    }else{
-        printf("%d\n",S->arr[S->Top--]);
-    }
+    --S->Top;
 }
-void push(struct stack *S,int d)
+void push(struct stack_i *S,int d)
 {
     S->arr[++S->Top]=d;
 }
-int isEmpty(struct stack *S)
+int empty(struct stack_i *S)
 {
     return S->Top==top_S;
 }
-struct stack *creat()
+struct stack_i *creat()
 {
-    struct stack *S;
-    S=(struct stack *)malloc(sizeof(struct stack));
+    struct stack_i *S;
+    S=(struct stack_i *)malloc(sizeof(struct stack_i));
     S->arr=(int*)malloc(sizeof(int)*N);
-    S->Cap=N;
     S->Top=top_S;
     return S;
+}
+int top(struct stack_i *S)
+{
+    return S->arr[S->Top];
+}
+
+
+void pop(struct stack_c * S)
+{
+    --S->Top;
+}
+void push(struct stack_c *S,int d)
+{
+    S->arr[++S->Top]=d;
+}
+int empty(struct stack_c *S)
+{
+    return S->Top==top_S;
+}
+struct stack_c *creat_c()
+{
+    struct stack_c *S;
+    S=(struct stack_c *)malloc(sizeof(struct stack_c));
+    S->arr=(char*)malloc(sizeof(char)*N);
+    S->Top=top_S;
+    return S;
+}
+
+char top(struct stack_c *S)
+{
+    return S->arr[S->Top];
 }
