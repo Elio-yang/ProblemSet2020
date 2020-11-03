@@ -14,11 +14,8 @@ int main()
     char pat[maxn];
     scanf("%s",pat);
     int len=strlen(pat);
-
     int *fail=build_fail(pat);
     int max_len=fail[len-1]+1;
-    //int ans[max_len+2]={0};
-
     pat[max_len]='\0';
     int *fail_d=build_fail(pat);
 
@@ -29,6 +26,7 @@ int main()
             out_d=fail_d[max_len-1]+1;
     }
 
+//int ans[max_len+2]={0};
 //     for(int i=1;i<=max_len;i++){
 //             int hash_sub=hash_t(pat,i-1);
 //             int hash_fat=hash_t(pat+(len-1)-(i-1),i-1);
