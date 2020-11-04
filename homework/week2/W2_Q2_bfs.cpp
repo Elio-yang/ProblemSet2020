@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+/*回溯法*/
 #define maxn 100000
 void bfs(char *str, int n, int len);
 int main()
