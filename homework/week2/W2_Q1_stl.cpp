@@ -14,14 +14,15 @@ int val_arr[maxn];
 stack<int> val_stk;
 stack<char> ops_stk;
 
-bool Errno=false;
+bool Errno = false;
 
-int op_order(char c1,char c2){
-        if(c1=='('||c2=='(')return 0;
+int op_order(char c1, char c2)
+{
+        if (c1 == '(' || c2 == '(')return 0;
         /*说明c2!='(,c2必然优先级大于等于c1*/
-        if(c1=='+'||c1=='-')return 1;
-        if(c1=='*'&&(c2=='*'||c2=='/'))return 1;
-        if(c1=='/'&&(c2=='*'||c2=='/'))return 1;
+        if (c1 == '+' || c1 == '-')return 1;
+        if (c1 == '*' && (c2 == '*' || c2 == '/'))return 1;
+        if (c1 == '/' && (c2 == '*' || c2 == '/'))return 1;
         /*c1的优先级大于c2*/
         return 0;
 }
@@ -48,16 +49,15 @@ int main()
                                 i++;
                         }
                         val_arr[cur++] = val;
-                }
-                else {
+                } else {
                         if (post_str[i] == ')') {
-                                while (!ops_stk.empty()&&ops_stk.top()!= '(' ) {
+                                while (!ops_stk.empty() && ops_stk.top() != '(') {
                                         ops_arr[cur++] = ops_stk.top();
                                         ops_stk.pop();
                                 }
                                 ops_stk.pop();
                         } else {
-                                while (!ops_stk.empty() && (op_order(post_str[i],ops_stk.top()))) {
+                                while (!ops_stk.empty() && (op_order(post_str[i], ops_stk.top()))) {
                                         /*
                                           栈顶运算符的优先级比读到的运算符的优先级高
                                           或二者相等，弹出栈顶运算符放入后缀表达式中
@@ -82,9 +82,9 @@ int main()
                         val_stk.push(val);
                 }
         }
-        if(!Errno){
+        if (!Errno) {
                 printf("%d\n", val_stk.top());
-        }else{
+        } else {
                 printf("ILLEGAL\n");
         }
         system("pause");
@@ -110,7 +110,7 @@ int calc(char ops, int op1, int op2)
                 }
                 case '/': {
                         if (op2 == 0) {
-                                Errno=true;
+                                Errno = true;
                                 return -1;
                         } else {
                                 double res = op1 / op2;
