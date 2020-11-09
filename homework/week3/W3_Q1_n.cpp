@@ -31,12 +31,14 @@ int main()
 {
         scanf("%s",post);
         scanf("%s",in);
-
         pNode root=build();
 
+        label:
         if(!flag){
                 printf("INVALID\n");
-                release(root);
+                if(root){
+                        release(root);
+                }
         }else {
                 printf("%d\n",get_h(root));
                 pre_order(root);
@@ -51,6 +53,10 @@ pNode build()
 {
         int end_in=strlen(in);
         int end_post=strlen(post);
+        if(end_in!=end_post){
+                flag= false;
+                return nullptr;
+        }
         return Build(0,end_in,0,end_post);
 }
 /*构建的核心*/
@@ -84,6 +90,7 @@ pNode Build(int beg_in, int end_in, int beg_post, int end_post)
 
         int l_size= pos_root_in - beg_in;
         int post_l_last= beg_post + l_size;
+
         /*序列是否合法*/
         if(!is_equal(beg_in, pos_root_in, beg_post, post_l_last)){ flag= false;return nullptr;}
 
@@ -136,20 +143,20 @@ int find(const char str[],int beg,int end,char t)
 bool is_equal(int beg_in,int end_in,int beg_post,int end_post)
 {
         int i,j;
-        int plus1=0;
-        int product1=1;
-        int plus2=0;
-        int product2=1;
+        int plus_a=0;
+        int product_a=1;
+        int plus_b=0;
+        int product_b=1;
 
         for(i=beg_in;i<end_in;i++){
-                plus1+=static_cast<int>(in[i]);
-                product1*=static_cast<int>(in[i]);
+                plus_a+=static_cast<int>(in[i]);
+                product_a*=static_cast<int>(in[i]);
         }
         for(j=beg_post;j<end_post;j++){
-                plus2+=static_cast<int>(post[j]);
-                product2*=static_cast<int>(post[j]);
+                plus_b+=static_cast<int>(post[j]);
+                product_b*=static_cast<int>(post[j]);
         }
-        return ((plus1==plus2)&&(product1==product2));
+        return ((plus_a == plus_b) && (product_a == product_b));
 }
 /*释放二叉树*/
 void release(pNode root){
