@@ -33,7 +33,7 @@ int main()
         scanf("%s",in);
         pNode root=build();
 
-        label:
+
         if(!flag){
                 printf("INVALID\n");
                 if(root){
