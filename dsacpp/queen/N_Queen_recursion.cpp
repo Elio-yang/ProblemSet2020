@@ -1,5 +1,26 @@
-#include "queen_it.h"
+#include <iostream>
+using namespace std;
 
+#include <cstdio>
+#include <cstdlib>
+#define max_q 20
+
+void place_queen(int,int);
+void display_queen(int*,int);
+bool collision(int*,int);
+
+int cnt_solu=0;
+int cnt_check=0;
+
+int main()
+{
+        int nq=4;
+        place_queen(4,0);
+        cout<<cnt_solu<<" solution(s) found after "
+                    <<cnt_check<<" check(s) for "
+                    <<nq<<" queen(s)\n";
+        return 0;
+}
 
 
 /*放置第k个皇后，假设0~k-1都已经放置好了*/

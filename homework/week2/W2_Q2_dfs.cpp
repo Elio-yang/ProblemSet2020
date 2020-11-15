@@ -17,7 +17,7 @@ int main()
     system("pause");
     return 0;
 }
-void bfs(char *str, int n, int len)
+void dfs(char *str, int n, int len)
 {
     int i, cnt = 0;
     char ans[maxn];
