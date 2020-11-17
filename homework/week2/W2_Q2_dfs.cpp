@@ -38,8 +38,9 @@ void dfs(char *str, int len)
                         ++cnt;
                 } else if (cnt) {
                         ans[--cnt] += 1;
-                } else {
+                } else if (cnt==0) {
                         break;
                 }
-        } while (1);
+        } while (cnt >= 0);
+
 }
