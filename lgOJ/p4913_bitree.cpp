@@ -1,11 +1,11 @@
 #include <iostream>
 
-const int maxn=1e6+10;
+const int max_n= 1e6 + 10;
 
 struct node{
         int lc,rc;
 };
-struct node tree[maxn];
+struct node tree[max_n];
 
 int ans;
 

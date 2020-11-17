@@ -15,3 +15,9 @@ add_executable(W3_Q4 homework/week3/W3_Q4.cpp)
 
 add_executable(quuen_r dsacpp/queen/N_Queen.cpp)
 add_executable(queen_it dsacpp/queen/N_Queen_recursion.cpp)
+
+add_executable(package algo_notes_book/z_o_backpack.cpp)
+add_executable(huffman homework/week4/huffman_tree.cpp)
+add_executable(expression homework/week4/expression_tree.cpp)
+add_executable(union_f homework/week4/union_find.cpp)
+
