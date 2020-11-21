@@ -2,8 +2,8 @@
 #include <iostream>
 struct node{
         char key;
-        struct node *lchild;
-        struct node *rchild;
+        struct node *lc;
+        struct node *rc;
 };
 
 struct node* creat();
@@ -40,8 +40,8 @@ struct node* creat()
         }else{
                 T=(struct node*)malloc(sizeof(struct node));
                 T->key=k;
-                T->lchild=creat();
-                T->rchild=creat();
+                T->lc=creat();
+                T->rc=creat();
         }
         return T;
 }
@@ -51,8 +51,8 @@ void LevelCnt(struct node *T,int l,int level_cnt[])
                 if(has_only_ac(T)){
                         ++level_cnt[l];
                 }
-                LevelCnt(T->lchild,l+1,level_cnt);
-                LevelCnt(T->rchild,l+1,level_cnt);
+                LevelCnt(T->lc, l + 1, level_cnt);
+                LevelCnt(T->rc, l + 1, level_cnt);
         }
         return;
 }
@@ -61,6 +61,6 @@ int level(struct node *T)
         if(T==NULL){
                 return 0;
         }
-        return 1+std::max(level(T->lchild),level(T->rchild));
+        return 1+std::max(level(T->lc), level(T->rc));
 }
 

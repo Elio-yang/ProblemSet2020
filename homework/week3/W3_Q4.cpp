@@ -1,21 +1,26 @@
 #include <cstdlib>
 #include <iostream>
+#include <vector>
+using namespace std;
+#define is_leaf(x) (((x)->lc==nullptr)&&((x)->rc==nullptr))
 struct node{
         int key;
-        struct node *lchild;
-        struct node *rchild;
+        struct node *lc;
+        struct node *rc;
 };
 using namespace std;
 struct node* creat();
 int max_sum=INT32_MIN;
-int dfs(struct node *T);
-
+vector<int> path;
+vector<int> max_path;
+//int dfs(struct node *T,int cur_sum,int& max_sum,vector<int>&max_path,vector<int>&path);
+int dfs(node*T);
 int main()
 {
         struct node* T;
         T=creat();
-        int max_v=dfs(T);
-        cout<<max_v;
+        int max_sum=dfs(T);
+        cout<<max_sum;
         return 0;
 }
 struct node* creat()
@@ -29,23 +34,18 @@ struct node* creat()
         }else{
                 T=(struct node*)malloc(sizeof(struct node));
                 T->key=k;
-                T->lchild=creat();
-                T->rchild=creat();
+                T->lc=creat();
+                T->rc=creat();
         }
         return T;
 }
-int dfs(struct node *T)
+//int dfs(struct node *T,int cur_sum,int& max_sum,vector<int>&max_path,vector<int>&path)
+//{
+//        cur_sum+=T->key;
+//        path.push_back(T->key);
+//        if(is_leaf(T)&&)
+//}
+int dfs(node*T)
 {
-        if(T==NULL){
-                return 0;
-        }
-        int lc_l=dfs(T->lchild);
-        int rc_l=dfs(T->rchild);
-        int sum=T->key;
-        if(lc_l>0){sum+=1;}
-        if(rc_l>0){sum+=1;}
-        max_sum=std::max(max_sum,sum);
-        return max(lc_l,rc_l)>0?max(rc_l,lc_l)+T->key:T->key;
+
 }
-
-

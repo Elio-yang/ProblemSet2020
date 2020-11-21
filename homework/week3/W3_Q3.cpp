@@ -2,8 +2,8 @@
 #include <iostream>
 struct node{
         int key;
-        struct node *lchild;
-        struct node *rchild;
+        struct node *lc;
+        struct node *rc;
 };
 using namespace std;
 struct node* creat();
@@ -53,8 +53,8 @@ struct node* creat()
         }else{
                 T=(struct node*)malloc(sizeof(struct node));
                 T->key=k;
-                T->lchild=creat();
-                T->rchild=creat();
+                T->lc=creat();
+                T->rc=creat();
         }
         return T;
 }
@@ -67,7 +67,7 @@ void path_rec(struct node *node, int *path, int len)
         path[len] = node->key;
         len++;
 
-        if (node->lchild ==NULL && node->rchild == NULL)
+        if (node->lc == NULL && node->rc == NULL)
         {
                 for(int i=0;i<len;i++){
                         ans[id][i]=path[i];
@@ -75,7 +75,7 @@ void path_rec(struct node *node, int *path, int len)
                 len_id[id]=len;
                 id++;
         } else {
-                path_rec(node->lchild, path, len);
-                path_rec(node->rchild, path, len);
+                path_rec(node->lc, path, len);
+                path_rec(node->rc, path, len);
         }
 }

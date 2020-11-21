@@ -8,4 +8,7 @@ This is a repo for daily exercise and some creative ideas based on the DataStruc
 6. ``hduOJ`` as the name(Problem set)
 7. ``lgOJ``  as the name
 8. ``NOI``   as the name 
+9. ``leetcode`` some problem from leetcode
+10. ``dsacpp`` from text_book 
+
 Mainly written by C/C++.

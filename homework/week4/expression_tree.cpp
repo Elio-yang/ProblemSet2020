@@ -3,8 +3,8 @@
 #include <cctype>
 struct node {
         char key;
-        struct node *lchild;
-        struct node *rchild;
+        struct node *lc;
+        struct node *rc;
 };
 
 node* creat();
@@ -27,30 +27,30 @@ node* creat() {
         else {
                 T = new node;
                 T->key = k;
-                T->lchild = creat();
-                T->rchild = creat();
+                T->lc = creat();
+                T->rc = creat();
         }
         return T;
 }
 void in_order(node *T) {
         if (T != nullptr) {
-                if (T->lchild){
-                        bool flag = order_op(T->key) > order_op(T->lchild->key);
+                if (T->lc){
+                        bool flag = order_op(T->key) > order_op(T->lc->key);
                         if (flag) {
                                 printf("(");
                         }
-                        in_order(T->lchild);
+                        in_order(T->lc);
                         if (flag) {
                                 printf(")");
                         }
                 }
                 printf("%c", T->key);
-                if (T->rchild) {
-                        bool flag = order_op(T->key) >= order_op(T->rchild->key);
+                if (T->rc) {
+                        bool flag = order_op(T->key) >= order_op(T->rc->key);
                         if (flag ) {
                                 printf("(");
                         }
-                        in_order(T->rchild);
+                        in_order(T->rc);
                         if (flag ) {
                                 printf(")");
                         }

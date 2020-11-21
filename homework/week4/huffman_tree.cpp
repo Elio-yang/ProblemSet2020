@@ -34,10 +34,11 @@ struct record_root {
 struct data {
         char key;
         int cnt;
+
         int pos;
 };
 data order [27] = {0};
-int __index=0;
+int _index=0;
 inline void init_list(l_root*& list) {
         list = new l_root;
         list->len = 0;
@@ -129,7 +130,7 @@ inline H_root *build_huffman_tree(char *str) {
                         order [j].cnt = cnt_array [str_cpy [i] - 'a'];
                         order [j].pos = i;
                         j++;
-                        __index++;
+                        _index++;
                         h_node->lc = nullptr;
                         h_node->rc = nullptr;
                         add_q_node(h_l, h_node, cnt_array [str_cpy [i] - 'a']);
@@ -251,7 +252,7 @@ int main() {
                         code = recd_node->recode;
                 }
         }
-        qsort(order, __index, sizeof(data), mycmy);
+        qsort(order, _index, sizeof(data), mycmy);
         int flag = bits & 0x7;
         printf("%d %d\n", len,flag?((bits>>3)+1):(bits>>3));
         for (int i = 0; i < 26; i++) {
