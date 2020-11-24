@@ -5,16 +5,16 @@
 
 #define maxn 50010
 
-struct node{
+struct vertex{
         char c;
-        struct node *next;
-        struct node *before;
+        struct vertex *next;
+        struct vertex *before;
 };
 
-void build_list(char str[],struct node*& head)
+void build_list(char str[],struct vertex*& head)
 {
         bool insert_flag=false;
-        struct node *p=head;
+        struct vertex *p=head;
         for(int i=0;str[i]!='\0';i++){
                 char ch=str[i];
                 
@@ -50,7 +50,7 @@ void build_list(char str[],struct node*& head)
                                 if(p->next){
                                         p->next->before=p->before;
                                 }
-                                struct node *tmp=p;
+                                struct vertex *tmp=p;
                                 free(tmp);
                                 p=p->before;
                                 break;
@@ -60,7 +60,7 @@ void build_list(char str[],struct node*& head)
                                         p->next->c=ch;
                                         p=p->next;
                                 }else{
-                                        struct node *p_t=(struct node*)malloc(sizeof(struct node));
+                                        struct vertex *p_t=(struct vertex*)malloc(sizeof(struct vertex));
                                         p_t->c=ch;
                                         p_t->next=NULL;
                                         p_t->before=NULL;
@@ -80,10 +80,10 @@ void build_list(char str[],struct node*& head)
         }
 }
 
-void release_list(struct node *head)
+void release_list(struct vertex *head)
 {
         while(head!=NULL){
-                struct node *tmp=head;
+                struct vertex *tmp=head;
                 free(tmp);
                 head=head->next;
         }
@@ -99,13 +99,13 @@ int main()
         }
         str[j]='\0';
 
-        struct node* head;
-        head=(struct node*)malloc(sizeof(struct node));
+        struct vertex* head;
+        head=(struct vertex*)malloc(sizeof(struct vertex));
         head->next=NULL;
         head->before=NULL;
         head->c='\0';
         build_list(str,head);
-        struct node* p_h=head->next;
+        struct vertex* p_h=head->next;
         while(p_h!=NULL){
                 printf("%c",p_h->c);
                 p_h=p_h->next;

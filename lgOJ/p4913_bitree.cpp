@@ -2,10 +2,10 @@
 
 const int max_n= 1e6 + 10;
 
-struct node{
+struct vertex{
         int lc,rc;
 };
-struct node tree[max_n];
+struct vertex tree[max_n];
 
 int ans;
 

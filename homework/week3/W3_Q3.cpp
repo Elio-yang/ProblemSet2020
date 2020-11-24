@@ -1,13 +1,13 @@
 #include <cstdlib>
 #include <iostream>
-struct node{
+struct vertex{
         int key;
-        struct node *lc;
-        struct node *rc;
+        struct vertex *lc;
+        struct vertex *rc;
 };
 using namespace std;
-struct node* creat();
-void path_rec(struct node *node, int *path, int len);
+struct vertex* creat();
+void path_rec(struct vertex *node, int *path, int len);
 
 
 int ans[100][100];
@@ -17,7 +17,7 @@ int id=0;
 
 int main()
 {
-        struct node* T;
+        struct vertex* T;
         T=creat();
         int path[110]={0};
         path_rec(T, path, 0);
@@ -42,16 +42,16 @@ int main()
         return 0;
 }
 
-struct node* creat()
+struct vertex* creat()
 {
         int k;
         scanf("%d",&k);
-        struct node* T;
+        struct vertex* T;
 
         if(k==0){
                 T= NULL;
         }else{
-                T=(struct node*)malloc(sizeof(struct node));
+                T=(struct vertex*)malloc(sizeof(struct vertex));
                 T->key=k;
                 T->lc=creat();
                 T->rc=creat();
@@ -61,7 +61,7 @@ struct node* creat()
 
 
 
-void path_rec(struct node *node, int *path, int len)
+void path_rec(struct vertex *node, int *path, int len)
 {
         if (node == NULL) return;
         path[len] = node->key;

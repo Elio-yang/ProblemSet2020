@@ -1,38 +1,38 @@
 #include <cstdlib>
 #include <iostream>
 #include <cctype>
-struct node {
+struct vertex {
         char key;
-        struct node *lc;
-        struct node *rc;
+        struct vertex *lc;
+        struct vertex *rc;
 };
 
-node* creat();
-void in_order(node *T);
+vertex* creat();
+void in_order(vertex *T);
 int order_op(char op_r);
 int main() {
-        auto T = new node;
+        auto T = new vertex;
         T = creat();
         in_order(T);
         return 0;
 }
 
-node* creat() {
+vertex* creat() {
         char k;
         scanf("%c", &k);
-        node* T;
+        vertex* T;
         if (k == '#') {
                 T = NULL;
         }
         else {
-                T = new node;
+                T = new vertex;
                 T->key = k;
                 T->lc = creat();
                 T->rc = creat();
         }
         return T;
 }
-void in_order(node *T) {
+void in_order(vertex *T) {
         if (T != nullptr) {
                 if (T->lc){
                         bool flag = order_op(T->key) > order_op(T->lc->key);

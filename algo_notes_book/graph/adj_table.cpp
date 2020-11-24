@@ -5,11 +5,11 @@
 
 using namespace std;
 
-class node{
+class vertex{
 public:
         int w;
         int v;
-        node(int &v_i,int &w_i):v(v_i),w(w_i){}
+        vertex(int &v_i, int &w_i): v(v_i), w(w_i){}
 };
 
 constexpr int max_v_n=1000;

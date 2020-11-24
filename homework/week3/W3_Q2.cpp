@@ -1,14 +1,14 @@
 #include <cstdlib>
 #include <iostream>
-struct node{
+struct vertex{
         char key;
-        struct node *lc;
-        struct node *rc;
+        struct vertex *lc;
+        struct vertex *rc;
 };
 
-struct node* creat();
-void LevelCnt(struct node *T,int l,int level_cnt[]);
-int level(struct node *T);
+struct vertex* creat();
+void LevelCnt(struct vertex *T, int l, int level_cnt[]);
+int level(struct vertex *T);
 #define has_only_lc(x) (((x)->lchild)&&!((x)->rchild))
 #define has_only_rc(x) (((x)->rchild)&&!((x)->lchild))
 #define has_only_ac(x) (has_only_lc(x)||has_only_rc(x))
@@ -16,7 +16,7 @@ int level(struct node *T);
 
 int main()
 {
-        auto *T=(struct node *)malloc(sizeof(struct node));
+        auto *T=(struct vertex *)malloc(sizeof(struct vertex));
         T=creat();
 
         int level_cnt[110]={0};
@@ -29,23 +29,23 @@ int main()
         return 0;
 }
 
-struct node* creat()
+struct vertex* creat()
 {
         char k;
         scanf("%c",&k);
-        struct node* T;
+        struct vertex* T;
 
         if(k=='#'){
                 T= NULL;
         }else{
-                T=(struct node*)malloc(sizeof(struct node));
+                T=(struct vertex*)malloc(sizeof(struct vertex));
                 T->key=k;
                 T->lc=creat();
                 T->rc=creat();
         }
         return T;
 }
-void LevelCnt(struct node *T,int l,int level_cnt[])
+void LevelCnt(struct vertex *T, int l, int level_cnt[])
 {
         if(T){
                 if(has_only_ac(T)){
@@ -56,7 +56,7 @@ void LevelCnt(struct node *T,int l,int level_cnt[])
         }
         return;
 }
-int level(struct node *T)
+int level(struct vertex *T)
 {
         if(T==NULL){
                 return 0;

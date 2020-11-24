@@ -187,10 +187,10 @@ int mycmy(const void *a, const void *b) {
         int p1 = ((data*)a)->pos;
         int p2 = ((data*)b)->pos;
         if (v1 != v2) {
-                return v1 > v2;
+                return v1 - v2;
         }
         else {
-                return p1 > p2;
+                return p1 - p2;
         }
 }
 inline void verify(char *str,H_tree_node *root) {

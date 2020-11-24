@@ -6,12 +6,12 @@
 #include <cstdlib>
 #include <cstring>
 #include <algorithm>
-#define pNode struct node*
-struct node{
+#define pNode struct vertex*
+struct vertex{
         char val;
         pNode lc;
         pNode rc;
-        explicit node(char const &e):val(e),lc(nullptr),rc(nullptr){}
+        explicit vertex(char const &e): val(e), lc(nullptr), rc(nullptr){}
 };
 
 bool flag=true;
@@ -66,7 +66,7 @@ pNode Build(int beg_in, int end_in, int beg_post, int end_post)
         if(beg_post == end_post){return nullptr;}
 
         const char e=post[end_post - 1];
-        pNode root=new node(e);
+        pNode root=new vertex(e);
 
 
         /*
