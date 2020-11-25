@@ -36,4 +36,10 @@ add_executable(q3 homework/week5/W5_Q3.cpp)
 add_executable(Q8 homework/daily/Q8_graph_show.cpp)
 add_executable(Q9 homework/daily/Q9_graph_del.cpp)
 add_executable(Q10 homework/daily/Q10_sort.cpp)
-add_executable(spfa homework/week5/test_w.cpp)
+add_executable(w1c homework/week1/W1_C.cpp)
+add_executable(w1d homework/week1/W1_Q4.cpp)
+add_executable(w2c homework/week2/W2_C.cpp)
+add_executable(w2e homework/week2/W2_E.cpp)
+add_executable(w2b homework/week2/W2_B.cpp)
+
+

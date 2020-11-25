@@ -91,7 +91,7 @@ void Graph::Dijkstra(int a, int *arr, int index) const
                                                 list[b]->cnt = list[a]->cnt + 1;
                                         }
                                 }
-                        }
+                        }/*保证节点数最少*/
                         p = p->next;
                 }
                 a = find_min_dis_v(arr, index);
