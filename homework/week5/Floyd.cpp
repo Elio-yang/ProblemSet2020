@@ -5,30 +5,30 @@
 #define inf 16843009
 using namespace std;
 int G[size][size];
-int D[size][size];
+int dis[size][size];
 int P[size][size];
 
 bool floyd(int n)
 {
         for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
-                        D[i][j] = G[i][j];
+                        dis[i][j] = G[i][j];
                 }
         }
         for (int i = 0; i < n; i++) {
-                D[i][i]=0;
+                dis[i][i]=0;
         }/*d[i][i]一定要初始化为0*/
         for (int k = 0; k < n; k++) {
                 for (int i = 0; i < n; i++) {
                         for (int j = 0; j < n; j++) {
-                                if(D[i][j]>(D[i][k]+D[k][j])){
-                                        D[i][j]=D[i][k]+D[k][j];
+                                if(dis[i][j] > (dis[i][k] + dis[k][j])){
+                                        dis[i][j]= dis[i][k] + dis[k][j];
                                 }
                         }
                 }
         }
         for (int i = 0; i < n; i++) {
-                if(D[i][i]<0){return true;}
+                if(dis[i][i] < 0){return true;}
         }
         return false;
 }
@@ -51,10 +51,10 @@ int main()
                         scanf("%d %d",&x,&y);
                         if(!f)
                         {
-                                if(D[x][y]==inf){
+                                if(dis[x][y] == inf){
                                         printf("none\n");
                                 }else{
-                                        printf("%d\n",D[x][y]);
+                                        printf("%d\n", dis[x][y]);
                                 }
                         }else{
                                 continue;

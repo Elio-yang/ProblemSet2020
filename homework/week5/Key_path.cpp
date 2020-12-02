@@ -23,7 +23,7 @@ typedef struct
 typedef struct edge //边表结点
 {
         int adj_vex;
-        int weight;
+        int w;
         struct edge* next;
 }edge;
 
@@ -146,7 +146,7 @@ void Matrix_AdjList(MGraph G, AdjGraphList* AG)
                         {
                                 edge = (edge*)malloc(sizeof(edge));
                                 edge->adj_vex = j;
-                                edge->weight = G.G_matrix[i][j];
+                                edge->w = G.G_matrix[i][j];
                                 edge->next = AG->adj_list[i].first_edge;
                                 AG->adj_list[i].first_edge = edge;
                                 AG->adj_list[j].in++;
@@ -190,8 +190,8 @@ Status TopologicalSort(AdjGraphList AG)
                         if (!(--AG.adj_list[k].in))
                                 stack[++top] = k;
 
-                        if ((etv[get_top] + e->weight) > etv[k])    //求各个顶点事件最早发生时间
-                                etv[k] = etv[get_top] + e->weight;
+                        if ((etv[get_top] + e->w) > etv[k])    //求各个顶点事件最早发生时间
+                                etv[k] = etv[get_top] + e->w;
                 }
         }
         //进行判断，若是count小于顶点数，则有环
@@ -220,8 +220,8 @@ void CriticalPath(AdjGraphList AG)
                 for (e = AG.adj_list[get_top].first_edge; e; e=e->next)    //这个for循环针对的是非终点，有出度边，情况二
                 {
                         k = e->adj_vex;    //k是他的下一个邻接点的下标，我们会修改他，按照情况二
-                        if (ltv[k] - e->weight < ltv[get_top])    //求各个顶点事件的最晚发生时间
-                                ltv[get_top] = ltv[k] - e->weight;
+                        if (ltv[k] - e->w < ltv[get_top])    //求各个顶点事件的最晚发生时间
+                                ltv[get_top] = ltv[k] - e->w;
                 }
         }
 
@@ -231,10 +231,10 @@ void CriticalPath(AdjGraphList AG)
                 {
                         k = e->adj_vex;    //获取邻接点
                         ete = etv[i];    //ete是由顶点i发起的活动,这是其活动最早开始时间
-                        lte = ltv[k] - e->weight;    //获取其中某一个邻接点的活动最迟发生时间,我们针对一个顶点会对其所有邻接点进行获取判断
+                        lte = ltv[k] - e->w;    //获取其中某一个邻接点的活动最迟发生时间,我们针对一个顶点会对其所有邻接点进行获取判断
                         //我们获取的是活动，是弧，弧的尾由i结点，头由k决定
                         if (ete==lte)
-                                printf("<%c,%c> length:%d, ", AG.adj_list[i].data, AG.adj_list[k].data, e->weight);
+                                printf("<%c,%c> length:%d, ", AG.adj_list[i].data, AG.adj_list[k].data, e->w);
                 }
         }
         printf("\n");
