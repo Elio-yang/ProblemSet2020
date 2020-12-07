@@ -1,12 +1,3 @@
-// TODO : refactor to OOP style
-//      -List
-//      -Stack
-//      -Queue
-//      -KMP
-//      -BinTree
-//      -Graph
-//      -Sort
-
 #include <stdio.h>
 #include <stdlib.h>
 struct node{

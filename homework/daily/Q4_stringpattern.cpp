@@ -40,7 +40,7 @@ int main()
     cout<<endl;
 /*===========================================================================*/
 
-    int pos=KMP(txt,pat);
+    int pos=Match(txt, pat);
     cout<<pos<<endl;
 
     system("pause");
