@@ -1,3 +1,4 @@
+/* 暴力匹配算法*/
 #include <cstdio>
 #include <cstring>
 

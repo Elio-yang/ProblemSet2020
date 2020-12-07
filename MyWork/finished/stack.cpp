@@ -1,3 +1,4 @@
+/*栈ADT*/
 #include <iostream>
 using namespace std;
 
@@ -5,13 +6,13 @@ template<typename T>
 class stack{
 private:
         static constexpr int Empty=-1;
-        int size;
+        int _size;
         int Low;
         int Top;
         T *arr;
         int max_size;
 public:
-        explicit stack<T>(int n):Top(Empty),max_size(n),Low(0),size(0){
+        explicit stack<T>(int n): Top(Empty), max_size(n), Low(0), _size(0){
                 arr =new T[n];
                 if (arr== nullptr){
                         cerr<<"heap overflow"<<endl;
@@ -19,7 +20,7 @@ public:
                 }
         }
         int empty(){
-                return (Top==Empty||size==0);
+                return (Top==Empty || _size == 0);
         }
         void push(T d){
                 if(Top==max_size-1){
@@ -27,7 +28,7 @@ public:
                         return ;
                 }
                 arr[++Top]=d;
-                ++size;
+                ++_size;
         }
         void pop(){
                 if(empty()){
@@ -35,7 +36,7 @@ public:
                         return;
                 }
                 --Top;
-                --size;
+                --_size;
 
         }
         T top(){

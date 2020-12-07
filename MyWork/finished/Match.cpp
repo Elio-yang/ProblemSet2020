@@ -1,14 +1,14 @@
 #include <iostream>
 #include <cstring>
 const int maxn=10000;
-struct KMP{
+struct Match{
         char pat[maxn];
         char txt[maxn];
         int len_p;
         int len_t;
         int *next;
         int *fail;
-        KMP(const char *t,const char *p){
+        Match(const char *t, const char *p){
                 strcpy(txt,t);
                 strcpy(pat,p);
                 len_p=strlen(p);
@@ -115,7 +115,7 @@ int main()
         char pat[maxn];
         scanf("%s",txt);
         scanf("%s",pat);
-        KMP match_pair(txt,pat);
+        Match match_pair(txt, pat);
         printf("txt : %s\n",match_pair.txt);
         printf("pat : %s\n",match_pair.pat);
         match_pair.kmp();

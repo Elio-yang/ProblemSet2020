@@ -1,12 +1,14 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <climits>
 #include <iostream>
 #include <queue>
 #include <stack>
 
 using namespace std;
 const int max_n = 1000;
+const int inf = 0x3f3f3f3f;
 
 struct node {
         int v;
@@ -65,7 +67,11 @@ public:
         //关键活动的个数
         int cnt;
 
+        //Dijkstra算法的D数组 与 path数组
+        int D_dij[max_n];
+        int p_dij[max_n];
 
+        //构造函数
         Graph(int N, int E, int flag) : n(N), e(E), cnt(0)
         {
                 for (int i = 0; i < n; i++) {
@@ -101,19 +107,16 @@ public:
                 }
         }
 
+        //广度优先搜索
         void bfs(int v)
         {
                 queue<int> q;
                 vis[v] = true;
                 //操作
 
-                /*
-                 1.访问起点，入队
-                 */
+                /*1.访问起点，入队*/
                 q.push(v);
-                /*
-                 2.队列非空则循环
-                 */
+                /*2.队列非空则循环*/
                 while (!q.empty()) {
                         int u = q.front();
                         q.pop();
@@ -133,9 +136,7 @@ public:
                                 }
                                 tmp = tmp->next;
                         }
-                        /*
-                         4. 重复 <2.>
-                         */
+                        /*4. 重复 <2.>*/
                 }
                 /*
                  如果要输出bfs的层号，结构体内多加一个成员layer
@@ -158,6 +159,7 @@ public:
                 }
         }
 
+        //深度优先搜索
         void dfs(int v)
         {
                 /*
@@ -181,16 +183,13 @@ public:
                 }
         }
 
+        //迭代版深度优先搜索
         void dfs_it(int s)
         {
                 stack<int> stk;
-                /*
-                 1.源点入栈
-                 */
+                /*1.源点入栈*/
                 stk.push(s);
-                /*
-                 2.栈非空，则循环
-                 */
+                /*2.栈非空，则循环*/
                 while (!stk.empty()) {
                         int v = stk.top();
                         stk.pop();
@@ -217,9 +216,7 @@ public:
         void trave_dfs()
         {
                 memset(vis, 0, sizeof(vis));
-                /*
-                 考虑有不连通的情况需要枚举所有顶点
-                 */
+                /*考虑有不连通的情况需要枚举所有顶点*/
                 for (int i = 0; i < n; i++) {
                         if (!vis[i]) {
                                 dfs(i);
@@ -231,21 +228,15 @@ public:
         {
                 //int cnt=0;
                 queue<int> q;
-                /*
-                 1.入度为0的顶点入队
-                 */
+                /*1.入度为0的顶点入队*/
                 for (int i = 0; i < n; i++) {
                         if (set_edge[i].in == 0) {
                                 q.push(i);
                         }
                 }
-                /*
-                 2.队列非空则
-                 */
+                /*2.队列非空则*/
                 while (!q.empty()) {
-                        /*
-                         3.从队头取出一个顶点
-                         */
+                        /*3.从队头取出一个顶点*/
                         int u = q.front();
                         q.pop();
                         topo_order.push(u);
@@ -277,20 +268,14 @@ public:
 
                                 tmp = tmp->next;
                         }
-                        /*
-                         5.加入拓扑序列的顶点数增加（u）(不必要)
-                         */
+                        /*5.加入拓扑序列的顶点数增加（u）(不必要)*/
                         //cnt++;
 
-                        /*
-                         6. 重复 <2.>
-                         */
+                        /*6. 重复 <2.>*/
 
                 }
 
-                /*
-                 7.若拓扑序列的顶点数不等于顶点数，则说明有环，算法终止
-                 */
+                /*7.若拓扑序列的顶点数不等于顶点数，则说明有环，算法终止*/
                 if (topo_order.size() == n) {
                         return true;
                 } else {
@@ -303,6 +288,7 @@ public:
                  如果要求有多个入度为0的顶点，选择编号小的顶点，
                  那么把queue改成priority_queue,保持队首的元素，
                  始终是队列里最小的元素即可！
+
                  */
         }
 
@@ -370,6 +356,53 @@ public:
                 return ve[n - 1];
         }
 
+        //单源Dijkstra算法
+        /*
+                D_i表示源点到i的最短距离
+         1.初始化 D_s=0;D_i=inf
+         2.在vis[i]=false 的顶点中，选择Di最小的v 访问v(一开始这个v就是源点)
+         3.以v为顶点，访问v的所有邻接顶点w，更新D_w
+
+         */
+        int Dijkstra(int s)
+        {
+                memset(vis, 0, sizeof(vis));
+                memset(D_dij, 0x3f, sizeof(D_dij));
+                memset(p_dij, -1, sizeof(p_dij));
+
+                //初始化
+                D_dij[s] = 0;
+                vis[s] = true;
+
+
+                //u是即将要访问的顶点
+                int u = s;
+                //tmp是u的邻接顶点
+                node *tmp = D_adj[u]->next;
+                for (int i = 0; i < n; i++) {
+                        while (tmp != nullptr) {
+                                //u---> tmp->v
+                                if (!vis[tmp->v]&&D_dij[u] + tmp->w < D_dij[tmp->v]) {
+                                        D_dij[tmp->v] = D_dij[u] + tmp->w;
+                                        p_dij[tmp->v]=u;
+                                }
+                                tmp = tmp->next;
+                        }
+
+                        int min = INT_MAX;
+                        int index;
+                        for (int j = 0; j < n; j++) {
+                                if (!vis[i] && D_dij[i] < min) {
+                                        min = D_dij[i];
+                                        index = i;
+                                }
+                        }
+                        u = i;
+                        vis[u] = true;
+                        tmp = D_adj[u]->next;
+                }
+
+        }
 
 
 };

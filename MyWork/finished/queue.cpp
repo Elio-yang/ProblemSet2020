@@ -1,7 +1,7 @@
 //
 // Created by ELIO on 2020/12/6.
 //
-
+/*队列ADT*/
 #include <cstdio>
 const int maxn = 10000;
 
