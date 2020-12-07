@@ -22,7 +22,7 @@ int main()
     scanf("%s",pat);
     int len=strlen(pat);
 
-    KMP(txt,pat);
+    Match(txt, pat);
     if(!ans.empty()){
         for(vector<int>::iterator it=ans.begin();it!=ans.end();++it){
             cout<<*it+1<<endl;
