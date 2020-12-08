@@ -1,5 +1,28 @@
+/*
+ * ELIO YANG
+ * JLU
+ * 2020/12/07
+ *
+ * provides basic graph structure & algorithms:
+ * Build :
+ *          Adj table
+ * Traversal:
+ *          bfs
+ *          dfs
+ * AOV&AOE:
+ *          topological sorting
+ *          find critical path
+ *
+ * Shortest path:
+ *                  dijkstra
+ *                  floyd
+ *                  bellman-ford
+ *                  spfa
+ * Minimal spanning :
+ *                  prim
+ *                  kruskal
+ **/
 #include <cstdio>
-#include <cstdlib>
 #include <cstring>
 #include <climits>
 #include <iostream>
@@ -401,6 +424,22 @@ public:
                         vis[u] = true;
                         tmp = D_adj[u]->next;
                 }
+
+        }
+
+        void floyd(){
+
+        }
+        void bellman_ford(){
+
+        }
+        void spfa(){
+
+        }
+        int prim(){
+
+        }
+        int kruskal(){
 
         }
 
