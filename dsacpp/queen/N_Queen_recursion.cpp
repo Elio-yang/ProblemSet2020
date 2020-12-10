@@ -38,6 +38,7 @@ void place_queen(int n_q,int k)
                         /* 第k个皇后(即第k行的皇后)分别放置在0~n-1列
                          * 在判断是否冲突*/
                         solu[k]=i;
+                        /*第k个皇后放在solu[k]列*/
                         if(!collision(solu,k)){
                                 /*不冲突就考虑下一个皇后*/
                                 place_queen(n_q,k+1);
