@@ -10,12 +10,9 @@
   3.如果有正有负 整数取反，负数取反
   此时最短 负的最多，正的最少 结果取反即可
 
-
-
+  综上：权值取反，求最短路径，输出相反数
  */
 
-// TODO
-//      -FINISH SPFA & BELLMAN
 #include <cstdio>
 #include <cstring>
 #include <vector>

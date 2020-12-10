@@ -1,8 +1,5 @@
 #include <cstdio>
 #include <vector>
-#include <cstring>
-#include <queue>
-#include <stack>
 const int maxn =100010;
 using namespace std;
 int Max=-1;
@@ -28,7 +25,7 @@ void Graph::dfs(int s,int max)
 //                        dfs(Adj[s][i]);
 //                }
 //        }
-        if (ans[s]){return;}
+        if (ans[s]){return;}//以及找到s走到的最远的顶点
         ans[s]=max;
         for (int i = 0; i < Adj[s].size(); i++) {
                 dfs(Adj[s][i],max);
@@ -62,6 +59,7 @@ int main()
                // G.Adj[u].push_back(v);
 
                 //考虑反向建立图
+                //v-->u
                 G.Adj[v].push_back(u);
         }
         G.tra();
