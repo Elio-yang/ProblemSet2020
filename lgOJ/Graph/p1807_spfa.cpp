@@ -42,6 +42,7 @@ bool flag= false;
 int Graph::spfa_bfs(int s)
 {
         /*
+         *
          spfa框架：
                 1.相关的数组： nums[] 每个元素的入队次数 如果 nums[v]>=n 则说明有负环
                               in_queue[] 判断这个元素是否在队列中，每次入队和出队都要记得更新
@@ -90,7 +91,7 @@ int Graph::spfa_bfs(int s)
         }
         return dis[n];
 
-//        return flag
+//        return flag;
 
 
 }
@@ -154,7 +155,6 @@ int main()
                 node new_node(v,-w);
                 G.Adj[u].push_back(new_node);
         }
-
         memset(in_stack,0,sizeof(in_stack));
         memset(dis,0x3f,sizeof(dis));
         dis[1]=0;

@@ -1,3 +1,11 @@
+/*
+ * Dijkstra:堆优化
+ *      1.初始化dis[s]=0,dis[i]=inf，入队源点q.push(make_pair(dis[s],1))
+ *      2.循环（队列非空）
+ *              a.出队一个元素 看是否访问，未访问则 访问 该元素
+ *              b. 访问该顶点的邻接顶点，并更新其dis 入队邻接顶点
+ * */
+
 #include <bits/stdc++.h>
 using namespace std;
 const int inf=0x3f3f3f3f;
@@ -14,6 +22,10 @@ struct node{
         }
 };
 
+/*
+ * 可以用pair<int,int>+greater<>建立小顶堆
+ * 第一个元素放w（dis） 第二个元素放编号
+ * */
 vector<node> Adj[maxn];
 int n,m,s;
 void Dijkstra(int S){

@@ -41,13 +41,13 @@ int Graph::bellman(int s)
 {
         /*
           模板： 1.初始化 dis[s]=0 dis[i]=inf
-                2.n-1轮操作，遍历所有的边，看能不能松弛
+                2.n-1轮操作: 遍历所有的边，看能不能松弛
                 3.遍历所有的边，看能不能再松弛，如果能就是有负环
          */
         memset(dis,0x3f,sizeof(dis));
         dis[s]=0;
         for (int i = 1; i <n ; i++) {
-                //n-1轮操作，遍历所有的边
+                //n-1轮操作，再遍历所有的边
                 for (int j = 1; j <=n ; j++) {
                         for (int k = 0; k <Adj[j].size() ; k++) {
                                 //松弛操作 j--->Adj[j][k].v
