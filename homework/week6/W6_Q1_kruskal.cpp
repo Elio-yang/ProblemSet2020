@@ -2,7 +2,8 @@
 #include <iostream>
 #include <cstdlib>
 using namespace std;
-const int maxn = 210;
+const int maxn = 5000+5;
+const int maxe=200000+5;
 struct UF {
         int n;
         int set [maxn]={0};
@@ -27,7 +28,7 @@ struct UF {
 struct edge{
         int u,v;
         int cost;
-}E[maxn];
+}E[maxe];
 
 int cmp(const void *a,const void *b)
 {

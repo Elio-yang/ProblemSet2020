@@ -113,7 +113,6 @@ struct degree{
         void add_in(){++in;}
 };
 degree deg[maxn];
-
 stack<int> topo_order(maxn);
 queue<int> q;
 Pair key_path[300];
