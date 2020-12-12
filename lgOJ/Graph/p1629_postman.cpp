@@ -8,6 +8,7 @@
 //#pragma GCC target("sse,sse2,sse3,ssse3,sse4.1,sse4.2,avx,avx2,popcnt,tune=native")
 //#include <immintrin.h>
 //#include <emmintrin.h>
+
 /*
   从1到其余n-1个点是1到多的最短路径，可以用Dijkstra Bellman SPFA
   从其它n-1到1是多到1的最短路径，怎样转化一下？？
