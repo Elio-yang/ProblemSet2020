@@ -50,6 +50,7 @@ void Dijkstra(int S){
                 }
         }
 }
+
 int main()
 {
         scanf("%d %d %d",&n,&m,&s);
