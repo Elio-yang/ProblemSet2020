@@ -1,4 +1,6 @@
-// C Program to illustrate Generic Quicksort Function
+/*
+ * C Generic quick-sort function
+ * */
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>

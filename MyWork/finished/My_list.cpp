@@ -53,7 +53,7 @@ public:
                 ++size;
         }
 
-        void push_posk(int k, T d)
+        void push_pos_k(int k, T d)
         {
                 /*在第k个节点后插入，k=0为push_head*/
                 if (k > size) {

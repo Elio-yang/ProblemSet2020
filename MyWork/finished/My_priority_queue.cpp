@@ -29,59 +29,52 @@ private:
         //最大的规模
         int Capcity;
         //堆的存放
-        T* eles;
+        T* Contains;
 public:
         //无参构造函数
         priority_queue<T>():size(0),Capcity(maxsize){
-                eles=new T[maxsize+1];
+                Contains=new T[maxsize + 1];
         }
-        void push(T E);
-        T top();
-        void pop();
-        bool empty();
+        void push(T E)
+        {
+                int i;
+                for(i=++size; Contains[i / 2] > E; i>>=1){
+                        Contains[i]=Contains[i >> 1];
+                }
+                Contains[i]=E;
+        }
+
+        T top()
+        {
+                return Contains[1];
+        }
+
+        void pop()
+        {
+                int i,child;
+                T last_ele=Contains[size--];
+                for(i=1;2*i<=size;i=child){
+                        child=i<<1;
+                        if (child!=size && Contains[child + 1] < Contains[child]){
+                                child++;
+                        }
+                        if (last_ele > Contains[child]){ Contains[i]=Contains[child];}
+                        else break;
+                }
+                Contains[i]=last_ele;
+        }
+        bool empty()
+        {
+                return size==0;
+        }
 };
 
-template<typename T>
-void priority_queue<T>::push(T E)
-{
-        int i;
-        for(i=++size;eles[i/2]> E;i>>=1){
-                eles[i]=eles[i>>1];
-        }
-        eles[i]=E;
-}
 
-template<typename T>
-T priority_queue<T>::top()
-{
-        return eles[1];
-}
-
-template<typename T>
-void priority_queue<T>::pop()
-{
-        int i,child;
-        T last_ele=eles[size--];
-        for(i=1;2*i<=size;i=child){
-                child=i<<1;
-                if (child!=size&&eles[child+1]<eles[child]){
-                        child++;
-                }
-                if (last_ele>eles[child]){eles[i]=eles[child];}
-                else break;
-        }
-        eles[i]=last_ele;
-}
-template<typename T>
-bool priority_queue<T>::empty()
-{
-        return size==0;
-}
-
+/*
 struct node{
         int v;
         int w;
-        /*记得每次要重载这俩比较运算符*/
+        //记得每次要重载这俩比较运算符来实现优先级的判断
         bool operator<(const node& b)const{
                 return w<b.w;
         }
@@ -89,8 +82,6 @@ struct node{
                 return w>b.w;
         }
 };
-
-
 
 int main()
 {
@@ -115,7 +106,7 @@ int main()
         }
         return 0;
 }
-
+*/
 
 
 

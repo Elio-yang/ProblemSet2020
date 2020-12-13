@@ -11,5 +11,12 @@ class pair{
         T get_second() const{
                 return second;
         }
+        bool operator<(const pair<T>& b)const{
+                if (first!=b.first){
+                        return first<b.first;
+                }else{
+                        return second<b.second;
+                }
+        }
 };
 

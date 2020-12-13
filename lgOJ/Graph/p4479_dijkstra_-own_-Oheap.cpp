@@ -34,11 +34,11 @@ private:
         //最大的规模
         int Capcity;
         //堆的存放
-        T* eles;
+        T* Contains;
 public:
         //无参构造函数
         priority_queue<T>():size(0),Capcity(maxsize){
-                eles=new T[maxsize+1];
+                Contains=new T[maxsize + 1];
         }
         void push(T E);
         T top();
@@ -50,32 +50,32 @@ template<typename T>
 void priority_queue<T>::push(T E)
 {
         int i;
-        for(i=++size;eles[i/2]> E;i>>=1){
-                eles[i]=eles[i>>1];
+        for(i=++size; Contains[i / 2] > E; i>>=1){
+                Contains[i]=Contains[i >> 1];
         }
-        eles[i]=E;
+        Contains[i]=E;
 }
 
 template<typename T>
 T priority_queue<T>::top()
 {
-        return eles[1];
+        return Contains[1];
 }
 
 template<typename T>
 void priority_queue<T>::pop()
 {
         int i,child;
-        T last_ele=eles[size--];
+        T last_ele=Contains[size--];
         for(i=1;2*i<=size;i=child){
                 child=i<<1;
-                if (child!=size&&eles[child+1]<eles[child]){
+                if (child!=size && Contains[child + 1] < Contains[child]){
                         child++;
                 }
-                if (last_ele>eles[child]){eles[i]=eles[child];}
+                if (last_ele > Contains[child]){ Contains[i]=Contains[child];}
                 else break;
         }
-        eles[i]=last_ele;
+        Contains[i]=last_ele;
 }
 template<typename T>
 bool priority_queue<T>::empty()

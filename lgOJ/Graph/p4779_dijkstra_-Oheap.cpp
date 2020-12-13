@@ -25,6 +25,7 @@ struct node{
 /*
  * 可以用pair<int,int>+greater<>建立小顶堆
  * 第一个元素放w（dis） 第二个元素放编号
+ * 先按照first升序，再按照second升序
  * */
 vector<node> Adj[maxn];
 int n,m,s;
