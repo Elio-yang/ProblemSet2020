@@ -42,7 +42,7 @@ T公司的员工层级关系可以表示成一棵树，员工X是员工Y的直�
 #include<vector>
 using namespace std;
 
-class Node{
+class node{
 public:
         int weight;
         vector<int> child;
@@ -50,7 +50,7 @@ public:
 
 #define maxn 3001
 int dp[maxn][2]; //0 不选 1 选
-Node node[maxn];
+node node[maxn];
 bool update[maxn]={false}; //false未更新
 bool isSon[maxn]={false}; //true代表当过儿子
 

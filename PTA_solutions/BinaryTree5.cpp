@@ -46,33 +46,33 @@
 #include<iostream>
 #include<stdlib.h>
 using namespace std;
-class Node;
-Node* arr[1000];
+class node;
+node* Count[1000];
 int cnt=0;
 
-class Node{
+class node{
 public:
         int data;
         int sum;
-        Node* lChild;
-        Node* rbro;
-        Node* father;
+        node* lChild;
+        node* rbro;
+        node* father;
 public:
-        Node():lChild(nullptr),rbro(nullptr),father(nullptr){}
+        node(): lChild(nullptr), rbro(nullptr), father(nullptr){}
 };
 class Tree{
 public:
-        Node* root;
+        node* root;
 public:
         Tree(){root=nullptr;}
-        Node* pre_Creat(Node* p,int sum);
-        void tran(int k,Node* proot);
+        node* pre_Creat(node* p, int sum);
+        void tran(int k, node* proot);
 };
-Node* Tree::pre_Creat(Node* p,int sum){
+node* Tree::pre_Creat(node* p, int sum){
         int val; scanf("%d",&val);
         if(val==0) return nullptr;
 
-        Node* cur=new Node;
+        node* cur=new node;
         cur->data=val;
         cur->sum=sum+cur->data;
         cur->father=p;
@@ -81,7 +81,7 @@ Node* Tree::pre_Creat(Node* p,int sum){
         else cur->rbro=pre_Creat(cur->father,0);
         return cur;
 }
-void Tree::tran(int k,Node* proot){
+void Tree::tran(int k, node* proot){
         if(proot->lChild==nullptr&&proot->rbro==nullptr){
                 if(proot->sum==k){
                         arr[cnt++]=proot; return ;
@@ -103,7 +103,7 @@ int main(){
         if(cnt==0) cout<<0<<endl;
         else{
                 int arr1[100]; int cnt1=0;
-                Node* p=arr[0];
+                node* p=arr[0];
                 while(p!=nullptr){
                         arr1[cnt1++]=p->data;
                         p=p->father;

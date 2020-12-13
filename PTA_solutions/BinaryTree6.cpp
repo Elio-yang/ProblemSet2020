@@ -51,29 +51,29 @@
 #include<queue>
 using namespace std;
 
-class Node{
+class node{
 public:
         int data;
         int dp;
-        Node* lChild;
-        Node* rbro;
-        Node* father;
+        node* lChild;
+        node* rbro;
+        node* father;
 public:
-        Node():lChild(nullptr),rbro(nullptr),father(nullptr){}
+        node(): lChild(nullptr), rbro(nullptr), father(nullptr){}
 };
 class Tree{
 public:
-        Node* root;
+        node* root;
 public:
         Tree(){root=nullptr;}
-        Node* pre_Creat(Node* p);
-        Node* layerdp();
+        node* pre_Creat(node* p);
+        node* layerdp();
 };
-Node* Tree::pre_Creat(Node* p){
+node* Tree::pre_Creat(node* p){
         int val; scanf("%d",&val);
         if(val==0) return nullptr;
 
-        Node* cur=new Node;
+        node* cur=new node;
         cur->data=val;
         cur->dp=val;
         cur->father=p;
@@ -85,7 +85,7 @@ int Max(int a,int b){
         if(a>b) return a;
         else return b;
 }
-int Len(Node* proot){
+int Len(node* proot){
         int len=0; int mulity=1; int dp=proot->dp;
         while(mulity!=dp){
                 mulity=mulity*proot->data;
@@ -94,12 +94,12 @@ int Len(Node* proot){
         }
         return len;
 }
-Node* Tree::layerdp(){
+node* Tree::layerdp(){
         if(this->root!=nullptr){
-                queue<Node*> q; q.push(this->root);
-                int max1=this->root->dp; Node* proot=this->root;
+                queue<node*> q; q.push(this->root);
+                int max1=this->root->dp; node* proot=this->root;
                 while(!q.empty()){
-                        Node* p=q.front(); q.pop();
+                        node* p=q.front(); q.pop();
                         if(p->father!=nullptr){
                                 //p->dp=Max(p->dp,p->dp*(p->father->dp));
                                 p->dp=p->dp*(p->father->dp);
@@ -124,7 +124,7 @@ Node* Tree::layerdp(){
 
 int main(){
         Tree T; T.root=T.pre_Creat(nullptr);
-        Node* p=T.layerdp();
+        node* p=T.layerdp();
         printf("%d\n",p->dp);
 
         int length=Len(p); int arr[length];
