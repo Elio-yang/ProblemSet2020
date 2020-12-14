@@ -427,23 +427,6 @@ public:
 
         }
 
-        void floyd(){
-
-        }
-        void bellman_ford(){
-
-        }
-        void spfa(){
-
-        }
-        int prim(){
-
-        }
-        int kruskal(){
-
-        }
-
-
 };
 
 

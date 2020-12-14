@@ -32,8 +32,6 @@ void swap(void* v1, void* v2, int size)
          * byte by byte.
          * */
         char buffer[size];
-
-
         memcpy(buffer, v1, size);
         memcpy(v1, v2, size);
         memcpy(v2, buffer, size);
@@ -52,7 +50,6 @@ void _qsort(void* v, int size, int left, int right,
         int i, last, mid = (left + right) / 2;
         if (left >= right)
                 return;
-
         // casting void* to char* so that operations
         void* vl = (char*)(v + (left * size));
         void* vr = (char*)(v + (mid * size));
