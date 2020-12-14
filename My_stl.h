@@ -449,11 +449,15 @@ public:
         {
                 return _buf + _size;
         }
+        void pop_back()
+        {
+                assert(_size > 0);
+                _size--;
+        }
 private:
         size_t  _size;
         size_t  _capacity;
         T*      _buf;
         const size_t _max_capacity = 65536;
 };
-
 #endif //PROBLEMSET_MY_STL_H
