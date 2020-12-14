@@ -11,34 +11,34 @@ vector<vector<int> > vi;
 vector<vector<int> > dp;
 vector<int> vout;
 
-class Node{
+class node{
 public:
         int data;
-        Node* lChild;
-        Node* rChild;
+        node* lChild;
+        node* rChild;
 };
-class Btree{
+class Tree{
 public:
-        Node* root;
+        node* root;
 public:
-        Btree();
-        Node* pre_Creat();
-        void tran(unsigned int pos,Node* proot);
+        Tree();
+        node* pre_Creat();
+        void tran(unsigned int pos, node* proot);
 };
-Btree::Btree(){
+Tree::Tree(){
         root=nullptr;
 }
-Node* Btree::pre_Creat(){
+node* Tree::pre_Creat(){
         int val; cin>>val;
         if(val==0)  return nullptr;
 
-        Node* current=new Node;
+        node* current=new node;
         current->data=val;
         current->lChild=pre_Creat();
         current->rChild=pre_Creat();
         return current;
 }
-void Btree::tran(unsigned int pos,Node* proot){
+void Tree::tran(unsigned int pos, node* proot){
         if(pos==vout.size()) vout.push_back(proot->data);
         else{
                 while(pos!=vout.size()){
@@ -184,7 +184,7 @@ void DP(){
 
 
 int main(){
-        Btree B;
+        Tree B;
         B.root=B.pre_Creat();
         B.tran(0,B.root);
 
