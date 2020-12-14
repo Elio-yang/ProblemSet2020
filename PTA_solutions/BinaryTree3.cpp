@@ -12,7 +12,9 @@
 
 输出格式:
 
-输出为两行，第一行为该二叉树路径和的最大值，第二行为一组整数，每个整数后一个空格，表示该最大路径包含的结点值（按所在层数递增顺序输出）。如果存在多条满足条件的路径，则输出最短（包含结点个数最少）者，如果存在多条最短的路径，则输出最靠左上者。
+输出为两行，第一行为该二叉树路径和的最大值，第二行为一组整数，每个整数后一个空格，
+ 表示该最大路径包含的结点值（按所在层数递增顺序输出）。如果存在多条满足条件的路径，
+ 则输出最短（包含结点个数最少）者，如果存在多条最短的路径，则输出最靠左上者。
 
 输入样例1:
 
@@ -69,10 +71,10 @@ public:
         node* lChild;
         node* rChild;
 };
+
 class Tree{
 public:
         node* root;
-public:
         Tree();
         node* pre_Creat();
         void tran(unsigned int pos, node* proot);
@@ -80,6 +82,7 @@ public:
 Tree::Tree(){
         root=nullptr;
 }
+
 node* Tree::pre_Creat(){
         int val; cin>>val;
         if(val==0)  return nullptr;
@@ -90,6 +93,7 @@ node* Tree::pre_Creat(){
         current->rChild=pre_Creat();
         return current;
 }
+
 void Tree::tran(unsigned int pos, node* proot){
         if(pos==vout.size()) vout.push_back(proot->data);
         else{
@@ -100,6 +104,7 @@ void Tree::tran(unsigned int pos, node* proot){
                 }
                 vout.push_back(proot->data);
         }
+
         if(proot->lChild==nullptr&&proot->rChild==nullptr){
                 vi.push_back(vout);
         }

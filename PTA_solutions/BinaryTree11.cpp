@@ -48,10 +48,6 @@ struct node {
 node* creat();
 void in_order(node *T);
 int order_op(char op_r);
-
-#define is_equal (0)
-#define higher   (1)
-#define lower    (-1)
 int main() {
 	auto T = new node;
 	T = creat();
@@ -99,48 +95,6 @@ void in_order(node *T) {
 		}
 	}
 }
-//
-//int judge_op(char op1, char op2) {
-//	switch (op1) {
-//	case'+':
-//	case'-':
-//		if (op2 == '+' || op2 == '-') {
-//			return is_equal;
-//		}
-//		else{
-//			return lower;
-//		}
-//		break;
-//	case'*':
-//		if (op2 == '*' || op2 == '/') {
-//			return is_equal;
-//		}
-//		else if (islower(op2)) {
-//			return lower;
-//		}
-//		else {
-//			return higher;
-//		}
-//		break;
-//	case'/':
-//		if (op2 == '*') {
-//			return higher;
-//		}
-//		else if (op2 == '/') {
-//			return is_equal;
-//		}
-//		else if(islower(op2)){
-//			return lower;
-//		}
-//		else {
-//			return higher;
-//		}
-//		break;
-//	default:
-//		return higher;
-//	}
-//}
-
 int order_op(char op_r) {
 	if (op_r == '+' || op_r == '-') {
 		return 1;
