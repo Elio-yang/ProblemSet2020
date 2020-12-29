@@ -5,9 +5,11 @@ void insert_sort(int arr[],int size);
 void select_sort(int arr[],int size);
 void swap(int& a,int &b);
 int find_min(int arr[],int beg,int end);
+
+
 int main()
 {
-        int arr[10]={1,78,5,23,98,256,234,1234,455,34};
+        int arr[10]={1,78,5,23,98,256,234,-1,455,34};
         bubble_sort(arr,10);
         for(auto i:arr){ 
                 std::cout << i<<" ";
