@@ -1,7 +1,7 @@
 /*Hex Big Integer addition */
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
+#include <cstdio>
+#include <cstring>
+#include <cctype>
 #include <malloc.h>
 
 #define length 70
@@ -63,15 +63,15 @@ int main()
         int len1 = strlen(BI_A);
         int len2 = strlen(BI_B);
         int max_len = (len1 > len2) ? len1 : len2;
-        int cin = 0;
+        int carry_in = 0;
         int tmpa = 0;
         int tmpb = 0;
 
         int l;
         for (l = 0; l <= max_len; l++) {
                 if (l == max_len) {
-                        if (cin != 0) {
-                                out_char[l] = cin + '0';
+                        if (carry_in != 0) {
+                                out_char[l] = carry_in + '0';
                         } else {
                                 l--;
                                 break;
@@ -91,10 +91,10 @@ int main()
                 }
 
 
-                int ans = tmpa + tmpb + cin;
-                cin = ans / 16;
+                int ans = tmpa + tmpb + carry_in;
+                carry_in = ans / 16;
 
-                int cur_num = ans - 16 * cin;
+                int cur_num = ans - 16 * carry_in;
                 if (cur_num >= 10) {
                         out_char[l] = 'A' + cur_num - 10;
                 } else {
