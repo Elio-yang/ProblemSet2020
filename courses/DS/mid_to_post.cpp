@@ -1,10 +1,10 @@
 #include <iostream>
 #include <cctype>
 #include <stack>
-#define belong_ops(str)    ((str=='+')||(str=='-')||(str=='*'||(str=='/')))
-#define belong_lbrac(str)  ( (str=='(') )
-#define belong_rbrac(str)  ( (str==')') )
-#define belong_brac(str)   (belong_lbrac(str)||belong_rbrac(str))
+#define is_ops(str)    ((str=='+')||(str=='-')||(str=='*'||(str=='/')))
+#define is_lbrac(str)  ( (str=='(') )
+#define is_rbrac(str)  ( (str==')') )
+#define is_bracs(str)   (is_lbrac(str)||is_rbrac(str))
 #define order(op) ({int m;                      \
                     if(op=='+'||op=='-'){       \
                         m=1;                    \
@@ -37,7 +37,7 @@ void mid_to_post(const char* str)
                         cout<<*str;
                         str++;
                 }
-                else if(belong_ops(*str)){
+                else if(is_ops(*str)){
                         if(ops.empty()){
                                 ops.push(*str);
                                 str++;
@@ -51,11 +51,11 @@ void mid_to_post(const char* str)
                                 }
                         }
                 }
-                else if(belong_brac(*str)){
-                        if(belong_lbrac(*str)){
+                else if(is_bracs(*str)){
+                        if(is_lbrac(*str)){
                                 ops.push(*str);
                         }
-                        else if(belong_rbrac(*str)){
+                        else if(is_rbrac(*str)){
                                 while(ops.top()!='('){
                                         cout<<ops.top();
                                         ops.pop();

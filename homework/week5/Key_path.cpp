@@ -144,7 +144,7 @@ void Matrix_AdjList(MGraph G, AdjGraphList* AG)
                 {
                         if (G.G_matrix[i][j] != INFINITY)
                         {
-                                edge = (edge*)malloc(sizeof(edge));
+                                edge = (struct edge*)malloc(sizeof(edge));
                                 edge->adj_vex = j;
                                 edge->w = G.G_matrix[i][j];
                                 edge->next = AG->adj_list[i].first_edge;
