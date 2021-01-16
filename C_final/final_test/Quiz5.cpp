@@ -1,3 +1,4 @@
+
 #include<stdio.h>
 int insert(int x, int* p,int *r) {
         int * tmp=p;

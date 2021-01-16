@@ -12,6 +12,7 @@ struct Student //结构体定义5分
         int grades[3];
         float total;
         struct Student *next;
+        
 };
 
 struct Student *create_list() //建立链表有哨兵结点
@@ -50,6 +51,7 @@ void sort_select(struct Student *head) //带有哨兵结点的链表排序
                 struct Student* p_min=cur;
 
                 float  max_grade=-1.0;
+
                 //find the max node
                 while (p_min!= nullptr){
                         if(p_min->total>max_grade){
@@ -80,6 +82,7 @@ void sort_select(struct Student *head) //带有哨兵结点的链表排序
                 tmp->grades[1]=tmp_cur_g1;
                 tmp->grades[2]=tmp_cur_g2;
                 tmp->total=tmp_cur_total;
+
 
                 cur=cur->next;
         }
