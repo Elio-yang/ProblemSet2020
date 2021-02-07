@@ -1,13 +1,11 @@
 /*
  * @author Elio Yang
  * @email  jluelioyang2001@gamil.com
- * @date 2021/1/28
+ * @date 2021/2/6
  */
-
-#include <vector>
-#include <stack>
-#include <algorithm>
 #include <queue>
+#include <cmath>
+
 using namespace std;
 
 struct TreeNode {
@@ -22,29 +20,29 @@ struct TreeNode {
         {}
 };
 
+
 class Solution {
 public:
-        vector<vector<int>> levelOrderBottom(TreeNode* root) {
-                vector<vector<int>> ans;
+        bool isBalanced(TreeNode* root) {
+                if(root==nullptr){return true;}
                 queue<TreeNode*>q;
-                if(root){q.push(root);}
+                q.push(root);
                 while(!q.empty()){
-                        vector<int> leveli;
                         int size=q.size();
                         for(int i=0;i<size;i++){
                                 TreeNode *cur=q.front();
-                                leveli.push_back(cur->val);
+                                int h_l=geth(cur->left);
+                                int h_r=geth(cur->right);
+                                if(abs(h_l-h_r)>1){return false;}
                                 q.pop();
                                 if(cur->left){q.push(cur->left);}
                                 if(cur->right){q.push(cur->right);}
                         }
-                        ans.push_back(leveli);
                 }
-                reverse(ans.begin(),ans.end());
-                return ans;
+                return true;
+        }
+        int geth(TreeNode* root){
+                if(root==nullptr){return 0;}
+                else return 1+max(geth(root->left),geth(root->right));
         }
 };
-int main()
-{
-        return 0;
-}

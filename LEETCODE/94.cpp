@@ -3,12 +3,6 @@
  * @email  jluelioyang2001@gamil.com
  * @date 2021/1/28
  */
-
-/*
- * @author Elio Yang
- * @email  jluelioyang2001@gamil.com
- * @date 2021/1/22
- */
 #include <vector>
 #include <stack>
 using namespace std;
@@ -70,6 +64,8 @@ public:
                         }
                 }
         }
-
-
 };
+int main()
+{
+        return 0;
+}

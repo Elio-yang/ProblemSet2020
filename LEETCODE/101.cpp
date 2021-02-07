@@ -43,3 +43,32 @@ public:
                 }
         }
 };
+
+class Solution2 {
+public:
+        bool isSymmetric(TreeNode* root) {
+                if(root==nullptr){return true;}
+                queue<TreeNode*>q;
+                q.push(root->left);
+                q.push(root->right);
+                while(!q.empty()){
+                        TreeNode *left_n=q.front();
+                        q.pop();
+                        TreeNode *right_n=q.front();
+                        q.pop();
+                        if(left_n==nullptr && right_n==nullptr){continue;}
+                        if(left_n==nullptr||right_n==nullptr||(left_n->val!=right_n->val)){return false;}
+                        q.push(left_n->left);
+                        q.push(right_n->right);
+                        q.push(left_n->right);
+                        q.push(right_n->left);
+                }
+                return true;
+        }
+};
+
+
+int main()
+{
+        return 0;
+}

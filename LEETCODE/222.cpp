@@ -1,13 +1,10 @@
 /*
  * @author Elio Yang
  * @email  jluelioyang2001@gamil.com
- * @date 2021/1/28
+ * @date 2021/2/6
  */
-
-#include <vector>
-#include <stack>
-#include <algorithm>
 #include <queue>
+
 using namespace std;
 
 struct TreeNode {
@@ -22,26 +19,38 @@ struct TreeNode {
         {}
 };
 
+
 class Solution {
 public:
-        vector<vector<int>> levelOrderBottom(TreeNode* root) {
-                vector<vector<int>> ans;
-                queue<TreeNode*>q;
-                if(root){q.push(root);}
+        int countNodes(TreeNode* root) {
+                return getNodes(root);
+        }
+        int getNodes(TreeNode* root){
+                if(root==nullptr){return 0;}
+                int left_n=getNodes(root->left);
+                int right_n=getNodes(root->right);
+                return 1+left_n+right_n;
+        }
+};
+
+class Solution2 {
+public:
+        int countNodes(TreeNode* root) {
+                if(root==nullptr){return 0;}
+                queue<TreeNode*> q;
+                q.push(root);
+                int nums=0;
                 while(!q.empty()){
-                        vector<int> leveli;
                         int size=q.size();
                         for(int i=0;i<size;i++){
-                                TreeNode *cur=q.front();
-                                leveli.push_back(cur->val);
+                                nums++;
+                                TreeNode* cur=q.front();
                                 q.pop();
                                 if(cur->left){q.push(cur->left);}
                                 if(cur->right){q.push(cur->right);}
                         }
-                        ans.push_back(leveli);
                 }
-                reverse(ans.begin(),ans.end());
-                return ans;
+                return nums;
         }
 };
 int main()
