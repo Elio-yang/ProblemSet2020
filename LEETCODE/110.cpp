@@ -46,3 +46,18 @@ public:
                 else return 1+max(geth(root->left),geth(root->right));
         }
 };
+
+class Solution2 {
+public:
+        bool isBalanced(TreeNode* root) {
+                return geth(root)==-1?false:true;
+        }
+        int geth(TreeNode* root){
+                if(root==nullptr){return 0;}
+                int dep_l=geth(root->left);
+                if(dep_l==-1){return -1;}
+                int dep_r=geth(root->right);
+                if(dep_r==-1){return -1;}
+                return abs(dep_l-dep_r)>1?-1:1+max(dep_r,dep_l);
+        }
+};
