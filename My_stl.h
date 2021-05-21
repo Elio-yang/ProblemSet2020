@@ -283,7 +283,7 @@ void _qsort(void* v, int size, int left, int right,
         _qsort(v, size, last + 1, right, comp);
 }
 /*just use it like it used to be! the same interface as what in stdlib.h*/
-void qsort(void* _base, std::size_t _nmemb, std::size_t _size, int (*_cmp)(void*, void*)){
+void Qsort(void* _base, std::size_t _nmemb, std::size_t _size, int (*_cmp)(void*, void*)){
         _qsort(_base, _size, 0, _nmemb - 1, _cmp);
 }
 /*PAIR structure*/

@@ -137,10 +137,10 @@ int main(){
 
         for (;;) {
                 state_func = event[cur_state];
-                rc = static_cast<ret_codes>(state_func());
+                rc = state_func();
                 if (END_STATE == cur_state)
                         break;
-                cur_state = static_cast<state_codes>(lookup_transitions[cur_state][rc]);
+                cur_state = lookup_transitions[cur_state][rc];
         }
         printf("END.");
         getch();
